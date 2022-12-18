@@ -6,6 +6,7 @@ __pycache__/
 images/
 books/
 index.html
+pages/
 
 # C extensions
 *.so
