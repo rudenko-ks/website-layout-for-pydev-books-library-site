@@ -13,9 +13,6 @@ def load_json(file_name: str = "books.json", folder: str = "") -> list:
         return json.load(file)
 
 
-# def get_library_pages(books_per_page: int = 10, folder: str = 'pages/'):
-
-
 def on_reload():
     env = Environment(loader=FileSystemLoader('.'),
                       autoescape=select_autoescape(['html', 'xml']))
@@ -24,15 +21,20 @@ def on_reload():
 
     books = load_json()
 
-    books_per_page = 10
+    books_per_page = 16
     books_on_pages = list(chunked(books, books_per_page))
+    max_pages = len(books_on_pages)
 
     folder = 'pages/'
     Path(folder).mkdir(parents=True, exist_ok=True)
 
     for page_num, books_on_page in enumerate(books_on_pages, start=1):
         f_path = Path(folder, f'index{page_num}.html')
-        books_page = template.render(books=books_on_page,)
+        books_page = template.render(
+            books=books_on_page,
+            max_pages=max_pages,
+            current_page=page_num,
+        )
         with open(f_path, 'w', encoding="utf8") as file:
             file.write(books_page)
 
@@ -43,7 +45,7 @@ def main():
 
     server = Server()
     server.watch('template.html', on_reload)
-    server.serve(root='.')
+    server.serve(root='.', default_filename='pages/index1.html')
 
 
 if __name__ == "__main__":
