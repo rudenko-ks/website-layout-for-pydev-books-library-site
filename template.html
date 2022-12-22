@@ -34,6 +34,7 @@
 
     <nav aria-label="Page navigation example">
       <ul class="pagination">
+        
         {% if current_page > 1 %}
           <li class="page-item">
             <a class="page-link" href="{{'../pages/index{}.html'.format(current_page-1)}}">Назад</a>
@@ -43,17 +44,13 @@
             <span class="page-link">Назад</span>
           </li>
         {% endif %}
+
         {% for page in range(1, max_pages+1) %}
-          {% if page == current_page %}
-            <li class="page-item active" aria-current="page">
-              <a class="page-link" href="{{'../pages/index{}.html'.format(page)}}">{{page}}</a>
-            </li>
-          {% else %}
-            <li class="page-item">
-              <a class="page-link" href="{{'../pages/index{}.html'.format(page)}}">{{page}}</a>
-            </li>
-          {% endif %}
+          <li class="page-item {% if page == current_page %} active {% endif %}">
+            <a class="page-link" href="{{'../pages/index{}.html'.format(page)}}">{{page}}</a>
+          </li>
         {% endfor %}
+
         {% if current_page < max_pages %}
           <li class="page-item">
             <a class="page-link" href="{{'../pages/index{}.html'.format(current_page+1)}}">Вперёд</a>
@@ -63,6 +60,7 @@
             <span class="page-link">Вперёд</span>
           </li>
         {% endif %}
+
       </ul>
     </nav>
 
