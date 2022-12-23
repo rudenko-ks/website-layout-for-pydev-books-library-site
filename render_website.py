@@ -17,7 +17,7 @@ def on_reload():
     env = Environment(loader=FileSystemLoader('.'),
                       autoescape=select_autoescape(['html', 'xml']))
 
-    template = env.get_template('template.html')
+    template = env.get_template('/static/templates/template.html')
 
     books = load_json()
 
