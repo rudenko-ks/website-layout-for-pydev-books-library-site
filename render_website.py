@@ -7,7 +7,7 @@ from livereload import Server
 from more_itertools import chunked
 
 
-def load_json(file_name: str = "books.json", folder: str = "") -> list:
+def load_json(file_name: str = "books.json", folder: str = "library/") -> list:
     filepath = Path(folder, file_name)
     with open(filepath, 'r', encoding="utf-8") as file:
         return json.load(file)
@@ -17,7 +17,7 @@ def on_reload():
     env = Environment(loader=FileSystemLoader('.'),
                       autoescape=select_autoescape(['html', 'xml']))
 
-    template = env.get_template('/static/templates/template.html')
+    template = env.get_template('/templates/template.html')
 
     books = load_json()
 
