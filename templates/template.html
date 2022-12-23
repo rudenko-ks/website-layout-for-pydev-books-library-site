@@ -6,17 +6,17 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <link rel="icon" type="image/png" href="/static/favicon.ico">
+  <link rel="icon" type="image/png" href="../static/favicon.ico">
 
   <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../static/css/bootstrap.min.css">
 
   <title>Books library</title>
 </head>
 
 <body>
-  <script src="/static/js/jquery-3.5.1.slim.min.js"></script>
-  <script src="/static/js/bootstrap.bundle.min.js"></script>
+  <script src="../static/js/jquery-3.5.1.slim.min.js"></script>
+  <script src="..static/js/bootstrap.bundle.min.js"></script>
 
   <div class="container">
     <nav aria-label="Page navigation example" class="pt-3">
@@ -24,7 +24,7 @@
 
         {% if current_page > 1 %}
           <li class="page-item">
-            <a class="page-link" href="{{'/pages/index{}.html'.format(current_page-1)}}">Назад</a>
+            <a class="page-link" href="{{'../pages/index{}.html'.format(current_page-1)}}">Назад</a>
           </li>
         {% else %}
           <li class="page-item disabled">
@@ -34,13 +34,13 @@
 
         {% for page in range(1, max_pages+1) %}
           <li class="page-item {% if page == current_page %} active {% endif %}">
-            <a class="page-link" href="{{'/pages/index{}.html'.format(page)}}">{{page}}</a>
+            <a class="page-link" href="{{'../pages/index{}.html'.format(page)}}">{{page}}</a>
           </li>
         {% endfor %}
 
         {% if current_page < max_pages %}
           <li class="page-item">
-            <a class="page-link" href="{{'/pages/index{}.html'.format(current_page+1)}}">Вперёд</a>
+            <a class="page-link" href="{{'../pages/index{}.html'.format(current_page+1)}}">Вперёд</a>
           </li>
         {% else %}
           <li class="page-item disabled">
@@ -60,7 +60,7 @@
             <div class="row no-gutters">
 
               <div class="col-md-4">
-                <img src="/{{book.img_src|urlencode}}" class="card-img" alt="{{book.title}} :: {{book.author}}">
+                <img src="../{{book.img_src|urlencode}}" class="card-img" alt="{{book.title}} :: {{book.author}}">
               </div>
 
               <div class="col-md-8">
@@ -70,7 +70,7 @@
                   {% for genre in book.genres %}
                     <span class="badge badge-primary">{{genre}}</span>
                   {% endfor %}
-                  <p><a href="/{{book.book_path|urlencode}}" target="_blank">Читать</a></p>
+                  <p><a href="../{{book.book_path|urlencode}}" target="_blank">Читать</a></p>
                 </div>
               </div>
 
