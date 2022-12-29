@@ -7,7 +7,7 @@ from livereload import Server
 from more_itertools import chunked
 
 
-def load_json(file_name: str = "books.json", folder: str = "library/") -> list:
+def get_book_descriptions_from_file(file_name: str = "books.json", folder: str = "library/") -> list:
     filepath = Path(folder, file_name)
     with open(filepath, 'r', encoding="utf-8") as file:
         return json.load(file)
@@ -19,7 +19,7 @@ def on_reload():
 
     template = env.get_template('/templates/template.html')
 
-    books = load_json()
+    books = get_book_descriptions_from_file()
 
     books_per_page = 16
     books_on_pages = list(chunked(books, books_per_page))
