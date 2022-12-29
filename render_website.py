@@ -42,14 +42,14 @@ def on_reload():
 
     books = get_book_descriptions_from_file(args.filepath)
 
-    books_per_page = 16
-    books_on_pages = list(chunked(books, books_per_page))
-    max_pages = len(books_on_pages)
+    book_cards_per_page = 16
+    book_cards_on_pages = list(chunked(books, book_cards_per_page))
+    max_pages = len(book_cards_on_pages)
 
     folder = 'pages/'
     Path(folder).mkdir(parents=True, exist_ok=True)
 
-    for page_num, books_on_page in enumerate(books_on_pages, start=1):
+    for page_num, books_on_page in enumerate(book_cards_on_pages, start=1):
         f_path = Path(folder, f'index{page_num}.html')
         books_page = template.render(
             books=books_on_page,
