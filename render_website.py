@@ -10,10 +10,10 @@ from more_itertools import chunked
 
 
 def create_argparser() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="""\
+    parser = argparse.ArgumentParser(description='''\
         Скрипт представляет собой пример создания библиотеки научно-фантастических книг.
         В карточках книг на странице будут собраны данные в виде заголовков, автора,
-        текста книг в формате .txt и обложек страниц при их наличии.""",
+        текста книг в формате .txt и обложек страниц при их наличии.''',
                                      formatter_class=argparse.RawTextHelpFormatter)
     parser.add_argument(
         '--filepath',
@@ -24,7 +24,7 @@ def create_argparser() -> argparse.Namespace:
 
 
 def get_book_descriptions_from_file(filepath: str) -> list:
-    with open(filepath, 'r', encoding="utf-8") as file:
+    with open(filepath, 'r', encoding='utf-8') as file:
         return json.load(file)
 
 
@@ -56,7 +56,7 @@ def on_reload():
             max_pages=max_pages,
             current_page=page_num,
         )
-        with open(f_path, 'w', encoding="utf8") as file:
+        with open(f_path, 'w', encoding='utf8') as file:
             file.write(books_page)
 
 
@@ -69,5 +69,5 @@ def main():
     server.serve(root='.', default_filename='pages/index1.html')
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
